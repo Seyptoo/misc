@@ -52,7 +52,6 @@ class LatexArgumentation:
 					"\usepackage{verbatim}":False,
 					"\+verbatiminput{/etc/passwd}":False
 			},
-
 			"Execution.Measure":
 				{
 					"\immediate\write18{cat /etc/passwd}":False,
