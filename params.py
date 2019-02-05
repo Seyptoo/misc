@@ -34,6 +34,10 @@ class LatexArgumentation:
 		if(self.URL.startswith(("http://", "https://")) == False):
 			raise LatexIncorrectSerial("URL crashed !")
 
+		for StringsPT in ["?", "&"]:
+			if not(StringsPT in self.POST):
+				raise LatexIncorrectSerial("Post-Data crashed !")
+
 if __name__ == "__main__":
 	Argument = LatexArgumentation()
 	Argument.StringLT()
