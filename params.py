@@ -51,18 +51,19 @@ class LatexArgumentation:
 					"\input{/etc/passwd}":False,
 					"\usepackage{verbatim}":False,
 					"\+verbatiminput{/etc/passwd}":False
-			}
+			},
 
 			"Execution.Measure":
 				{
-				"\immediate\write18{cat /etc/passwd}":False,
-				"\input|cat /etc/passwd":False,
-				"\input{|'cat /etc/passwd'}":False
+					"\immediate\write18{cat /etc/passwd}":False,
+					"\input|cat /etc/passwd":False,
+					"\input{|'cat /etc/passwd'}":False
 			}
+
 		}
 
-		print self.Optionnal["Reading.Measure"].values()
-		print self.Optionnal["Execution.Measure"].values()
+		print self.Optionnal["Reading.Measure"].keys()
+		print self.Optionnal["Execution.Measure"].keys()
 
 if __name__ == "__main__":
 	Argument = LatexArgumentation()
