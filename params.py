@@ -58,7 +58,6 @@ class LatexArgumentation:
 					"\input|cat /etc/passwd":False,
 					"\input{|'cat /etc/passwd'}":False
 			}
-
 		}
 
 		print self.Optionnal["Reading.Measure"].keys()
