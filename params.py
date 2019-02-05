@@ -20,8 +20,8 @@ class LatexIncorrectSerial(Exception):
 
 class LatexArgumentation:
 	def __init__(self, LatexOptionnal=None,
-							PayloadMeasure=None,
-							MeasurePayload=None):
+		PayloadMeasure=None,
+		MeasurePayload=None):
 		'''
 			Creating arguments to
 			do something cool.
