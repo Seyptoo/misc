@@ -46,17 +46,15 @@ class LatexArgumentation:
 			here with several success.	
 		'''
 		self.Optionnal = {
-			"Reading.Measure":
-				{
-					"\input{/etc/passwd}":False,
-					"\usepackage{verbatim}":False,
-					"\+verbatiminput{/etc/passwd}":False
-			},
-			"Execution.Measure":
-				{
-					"\immediate\write18{cat /etc/passwd}":False,
-					"\input|cat /etc/passwd":False,
-					"\input{|'cat /etc/passwd'}":False
+			"Reading.Measure": {
+				"\input{/etc/passwd}":False,
+				"\usepackage{verbatim}":False,
+				"\+verbatiminput{/etc/passwd}":False
+				
+		}, "Execution.Measure": {
+				"\immediate\write18{cat /etc/passwd}":False,
+				"\input|cat /etc/passwd":False,
+				"\input{|'cat /etc/passwd'}":False
 			}
 		}
 
