@@ -6,6 +6,9 @@ import socket
 import options
 import re
 
+class IncorrectProgramException(Exception):
+	def __init__(self, OutputCondition=None):
+		self.OutputCondition = OutputCondition
 
 # This tool allows to exploit Latex without any problem.
 # You will also have the opportunity to do a reverse shell.
@@ -18,23 +21,39 @@ ServicesPollers = {
 	}
 }
 
+SettingsURL = options.URL
+SettingsDATA = options.DATA
+SettingsOSSH = options.OSSH
+
 def BertModel():
-	SettingsURL = options.URL
-	SettingsDATA = options.DATA
-	SettingsOSSH = options.OSSH
+	"""
 
-	if(SettingsURL != None):
-		ModelURI = urllib2.urlopen(SettingsURL)
-		ModelURI = ModelURI.getcode()
+	This function will allow us to test conditions,
+	and to make the attack.
 
-		if(not(ModelURI == 200):
-			print False
+	Parameters
+	----
+	None Parameters.
 
-	if(SettingsDATA != None):
+	Return
+	----
+	This function will
+	return values.
+
+	"""
+
+	if(SettingsURL == None):
+		sys.exit("[!] Please put the URL with option '-u'.")
+	if(SettingsDATA == None):
+		sys.exit("[!] Please put the DATA with option '-d'.")
+	if(SettingsOSSH == None):
+		sys.exit("[!] Please put the DATA with option '-o'.")
+
+	# So here we will test the variables and their values.
+	# It is a subjective criterion.
+
+	if(SettingsURL.startswith(("http://", "https://") == True):
 		SettingsDATA = re.findall('(\w+[=]+\w+[&]{0,})', SettingsDATA)
 
-		if(len(SettingsDATA) == 0):
-			print False
-
 if __name__ == "__main__":
-	BertModel()
+BertModel()
