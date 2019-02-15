@@ -21,10 +21,6 @@ ServicesPollers = {
 	}
 }
 
-SettingsURL = options.URL
-SettingsDATA = options.DATA
-SettingsOSSH = options.OSSH
-
 def BertModel():
 	"""
 
@@ -42,6 +38,10 @@ def BertModel():
 
 	"""
 
+	SettingsURL = options.URL
+	SettingsDATA = options.DATA
+	SettingsOSSH = options.OSSH
+
 	if(SettingsURL == None):
 		sys.exit("[!] Please put the URL with option '-u'.")
 	if(SettingsDATA == None):
@@ -52,8 +52,10 @@ def BertModel():
 	# So here we will test the variables and their values.
 	# It is a subjective criterion.
 
-	if(SettingsURL.startswith(("http://", "https://") == True):
-		SettingsDATA = re.findall('(\w+[=]+\w+[&]{0,})', SettingsDATA)
+	if(SettingsURL.startswith(("http://", "https://")) == False):
+		raise IncorrectProgramException("[!] Incorrect URL.")
+	if not(re.search('(\w+[=]+\w+[&]{0,})', SettingsDATA)):
+		raise IncorrectProgramException("[!] Incorrect DATA.")
 
 if __name__ == "__main__":
-BertModel()
+	BertModel()
