@@ -1,9 +1,9 @@
 #coding:utf-8
 
-import sys
 import re
-import thread
+import threading
 import options
+import Queue
 
 class SSHArgumentNotFound(Exception):
 	def __init__(self, ArgumentExcepts=None):
@@ -25,10 +25,12 @@ def OutputArgument():
 	# We already start the mistakes to do that.
 	# I create an express function for that.
 
-class SSHLooper(thread.Threading):
-	def __init__(self, threads=35):
+class SSHLooper(threading.Thread):
+	def __init__(self, THREADS=35):
 		'''
 			The pretty well-known parameters
 			that I will put in the function.
 		'''
-		pass
+		self.HOST = options.HOST
+		self.WORDLIST = options.WORDLIST
+		self.THREADS = THREADS
