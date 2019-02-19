@@ -31,6 +31,29 @@ class SSHLooper(threading.Thread):
 			The pretty well-known parameters
 			that I will put in the function.
 		'''
+		threading.Thread.__init__(self)
+		self.run()
+
 		self.HOST = options.HOST
-		self.WORDLIST = options.WORDLIST
+		self.USER = options.USER
+		self.PASSWORD = options.PASSWORD
 		self.THREADS = THREADS
+
+	def run(self):
+		'''
+			This feature allows you to manage
+			threads and all their functionality.
+		'''
+		q = Queue.Queue()
+		with open(self.PASSWORD) as BertModel:
+			for Queue_Reverse in BertModel:
+				q.put(Queue_Reverse.rstrip("\n\r"))
+			self.ExtensionModel(q)
+
+		for i in range(int(self.THREADS)):
+			worker = threading.Thread(name="ServicePollers", target=self.ExtensionModel, args=(i, q))
+			worker.setDaemon(True)
+			worker.start()
+			worker.join(600)
+
+		q.join()
