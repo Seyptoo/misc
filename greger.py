@@ -22,3 +22,13 @@ def OutputArgument():
 	if(type(ArgsHOST) == list and len(ArgsHOST) == 0):
 		raise SSHIncorrectAddress("Incorrect Address SSH sorry.")
 
+	# We already start the mistakes to do that.
+	# I create an express function for that.
+
+class SSHLooper(thread.Threading):
+	def __init__(self, threads=35):
+		'''
+			The pretty well-known parameters
+			that I will put in the function.
+		'''
+		pass
