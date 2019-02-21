@@ -59,3 +59,9 @@ def PollersLangs():
 	
 	if(RegexOnline == "fr"):
 		print("Langage : French")
+	elif(RegexOnline == "en"):
+		print("Langage : English")
+	elif(RegexOnline == "de"):
+		print("Langage : Deutsch")
+	elif(RegexOnline == "es"):
+		print("Langage : Spain")
