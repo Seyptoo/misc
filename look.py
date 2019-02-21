@@ -4,6 +4,7 @@ import requests
 import sys
 import re
 import options
+import bs4 as BeautifulSoup
 
 class RMUsernameNotFound(Exception):
 	def __init__(self, OutputCondition=None):
@@ -47,4 +48,14 @@ def PollersLangs():
 		This function allows you to see
 		the language of the user
 	'''
-	pass
+	ModelReqs = requests.get('https://www.root-me.org/'+USER).text
+	ModelServ = BeautifulSoup.BeautifulSoup(ModelReqs, "html5lib")
+
+	# This function allows you to test the language and see the language of the user.
+	# I used this time the Beautiful module to better manage things.
+
+	RegexOnline = re.findall('(alt="[a-z]{0,2}")', ModelReqs)
+	RegexOnline = "".join(RegexOnline).split('"')[1]
+	
+	if(RegexOnline == "fr"):
+		print("Langage : French")
