@@ -25,7 +25,6 @@ def PollersPoint():
 	# The condition it tests if the user is existing.
 
 	if(type(ModelSpan) == list and len(ModelSpan) != 0):
-		# He enters the condition with success
 		BertModel = ModelSpan[0] # Take the first.
 		BertModel = re.findall("[0-9]", BertModel)
 		sys.exit("Point of %s : %s" %(USER, "".join(BertModel)))
