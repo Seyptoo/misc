@@ -9,6 +9,7 @@ class RMUsernameNotFound(Exception):
 	def __init__(self, OutputCondition=None):
 		self.OutputCondition = OutputCondition
 
+#options.ServicePollers()
 USER = options.PollersUser
 LANG = options.PollersLang
 
@@ -26,7 +27,7 @@ def PollersPoint():
 	if(type(ModelSpan) == list and len(ModelSpan) != 0):
 		BertModel = ModelSpan[0] # Take the first.
 		BertModel = re.findall("[0-9]", BertModel)
-		sys.exit("Point of %s : %s" %(USER, "".join(BertModel)))
+		sys.exit("Point of "+USER+" : "+"".join(BertModel))
 	else:
 		raise RMUsernameNotFound("Username not found in DB.")
 
