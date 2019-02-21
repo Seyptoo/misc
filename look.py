@@ -29,3 +29,9 @@ def PollersPoint():
 		BertModel = ModelSpan[0].replace("<span>", "")
 		BertModel = BertModel.replace("</span>", "")
 		sys.exit("[+] Point of %s : %s" %(USER, BertModel))
+	else:
+		# If he does not find the user he goes back here.
+		raise RMUsernameNotFound("Username not found in DB.")
+		
+		
+		
