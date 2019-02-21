@@ -13,6 +13,17 @@ class RMUsernameNotFound(Exception):
 USER = options.PollersUser
 LANG = options.PollersLang
 
+def PollersUsers(ValuePlease):
+	'''
+		I created a decorator to simplify
+		things and speed things up easily
+	'''
+	if(type(USER) == str and USER == None):
+		raise RMUsernameNotFound("No users typed.")
+	else:
+		return ValuePlease
+
+@PollersUsers
 def PollersPoint():
 	'''
 		This function will consist
@@ -31,6 +42,7 @@ def PollersPoint():
 	else:
 		raise RMUsernameNotFound("Username not found in DB.")
 
+@PollersUsers
 def PollersLangs():
 	'''
 		This function allows you to see
