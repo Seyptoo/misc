@@ -20,8 +20,7 @@ def PollersUsers(ValuePlease):
 	'''
 	if(type(USER) == str and USER == None):
 		raise RMUsernameNotFound("No users typed.")
-	else:
-		return ValuePlease
+	return ValuePlease
 
 @PollersUsers
 def PollersPoint():
