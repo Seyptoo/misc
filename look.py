@@ -27,9 +27,8 @@ def PollersPoint():
 	if(type(ModelSpan) == list and len(ModelSpan) != 0):
 		# He enters the condition with success
 		BertModel = ModelSpan[0] # Take the first.
-		BertModel = BertModel.replace("<span>", "")
-		BertModel = BertModel.replace("</span>", "")
-		sys.exit("Point of %s : %s" %(USER, BertModel))
+		BertModel = re.findall("[0-9]", BertModel)
+		sys.exit("Point of %s : %s" %(USER, "".join(BertModel)))
 	else:
 		# If he does not find the user he goes back here.
 		raise RMUsernameNotFound("Username not found in DB.")
