@@ -32,6 +32,10 @@ def PollersPoint():
 	else:
 		# If he does not find the user he goes back here.
 		raise RMUsernameNotFound("Username not found in DB.")
-		
-		
-		
+
+def PollersLangs():
+	'''
+		This function allows you to see
+		the language of the user
+	'''
+	pass
