@@ -25,9 +25,7 @@ def PollersPoint():
 	# The condition it tests if the user is existing.
 
 	if(type(ModelSpan) == list and len(ModelSpan) != 0):
+		# He enters the condition with success
 		BertModel = ModelSpan[0].replace("<span>", "")
 		BertModel = BertModel.replace("</span>", "")
-		print BertModel
-    
-if __name__ == "__main__":
-  PollersPoint()
+		sys.exit("[+] Point of %s : %s" %(USER, BertModel))
