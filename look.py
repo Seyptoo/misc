@@ -25,10 +25,11 @@ def PollersPoint():
 	# The condition it tests if the user is existing.
 
 	if(type(ModelSpan) == list and len(ModelSpan) != 0):
+		BertModel = ModelSpan[0] # Take the first.
 		# He enters the condition with success
-		BertModel = ModelSpan[0].replace("<span>", "")
+		BertModel = BertModel.replace("<span>", "")
 		BertModel = BertModel.replace("</span>", "")
-		sys.exit("[+] Point of %s : %s" %(USER, BertModel))
+		sys.exit("Point of %s : %s" %(USER, BertModel))
 	else:
 		# If he does not find the user he goes back here.
 		raise RMUsernameNotFound("Username not found in DB.")
