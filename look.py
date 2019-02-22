@@ -10,8 +10,14 @@ class RMUsernameNotFound(Exception):
 	def __init__(self, OutputCondition=None):
 		self.OutputCondition = OutputCondition
 
+class RMErrorConnections(Exception):
+	def __init__(self, ServerCondition=None):
+		self.ServerCondition = ServerCondition
+
 USER = options.PollersUser
 LANG = options.PollersLang
+CHAT = options.PollersChat
+STATUS = options.PollersStatus
 
 def PollersUsers(ValuePlease):
 	'''
@@ -97,5 +103,3 @@ def PollersStatus():
 	# He will leave the program with this command.
 	sys.exit("[+] Status of the user : %s" %(RegexStatusService))
 
-if __name__ == "__main__":
-	PollersStatus()
