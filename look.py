@@ -58,10 +58,10 @@ def PollersLangs():
 	RegexOnline = "".join(RegexOnline).split('"')[1]
 
 	if(type(RegexOnline) == unicode and RegexOnline == "fr"):
-		print "[+] Langage of the user : French."
+		print "Langage of the user : French."
 	elif(type(RegexOnline) == unicode and RegexOnline == "en"):
-		print "[+] Langage of the user : English."
+		print "Langage of the user : English."
 	elif(type(RegexOnline) == unicode and RegexOnline == "de"):
-		print "[+] Langage of the user : Deutsch."
+		print "Langage of the user : Deutsch."
 	elif(type(RegexOnline) == unicode and RegexOnline == "es"):
-		print "[+] Langage of the user : Spain."
+		print "Langage of the user : Spain."
