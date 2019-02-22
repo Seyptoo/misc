@@ -19,7 +19,7 @@ def PollersUsers(ValuePlease):
 		I created a decorator to simplify
 		things and speed things up easily
 	'''
-	if(type(USER) == str and USER == None):
+	if(USER == None):
 		raise RMUsernameNotFound("No users typed.")
 	return ValuePlease
 
@@ -54,14 +54,14 @@ def PollersLangs():
 	# This function allows you to test the language and see the language of the user.
 	# I used this time the Beautiful module to better manage things.
 
-	RegexOnline = re.findall('(alt="[a-z]{0,2}")', ModelReqs)
-	RegexOnline = "".join(RegexOnline).split('"')[1]
+	try:
+		RegexOnline = re.findall('(alt="[a-z]{0,2}")', ModelReqs)
+		RegexOnline = "".join(RegexOnline).split('"')[1]
+	except IndexError as e:
+		sys.exit(e)
 
-	if(type(RegexOnline) == unicode and RegexOnline == "fr"):
-		print "Langage of the user : French."
-	elif(type(RegexOnline) == unicode and RegexOnline == "en"):
-		print "Langage of the user : English."
-	elif(type(RegexOnline) == unicode and RegexOnline == "de"):
-		print "Langage of the user : Deutsch."
-	elif(type(RegexOnline) == unicode and RegexOnline == "es"):
-		print "Langage of the user : Spain."
+	print("[+] Lang : "+RegexOnline)
+
+@PollersUsers
+def PollersStatus():
+	pass
