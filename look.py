@@ -10,7 +10,6 @@ class RMUsernameNotFound(Exception):
 	def __init__(self, OutputCondition=None):
 		self.OutputCondition = OutputCondition
 
-#options.ServicePollers()
 USER = options.PollersUser
 LANG = options.PollersLang
 
