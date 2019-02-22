@@ -60,8 +60,9 @@ def PollersLangs():
 	except IndexError as e:
 		sys.exit(e)
 
-	print("[+] Lang : "+RegexOnline)
-
-@PollersUsers
 def PollersStatus():
+	'''
+		This function allows to
+		see the status of the user.
+	'''
 	pass
