@@ -61,7 +61,6 @@ def PollersLangs():
 			sys.exit(e)
 
 	sys.exit("[+] Lang of the user : %s" %(RegexOnline))
-	# He will leave the program with this command.
 
 @PollersUsers
 def PollersChatBox():
@@ -77,4 +76,3 @@ def PollersChatBox():
 		ServiceLetter = "".join(ServiceLetter)
 
 	sys.exit("[+] ChatBox of the user : %s" %(ServiceLetter))
-	# He will leave the program with this command.
