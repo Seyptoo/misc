@@ -60,6 +60,7 @@ def PollersLangs():
 	except IndexError as e:
 		sys.exit(e)
 
+@PollersUsers
 def PollersStatus():
 	'''
 		This function allows to
