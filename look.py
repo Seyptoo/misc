@@ -64,9 +64,17 @@ def PollersLangs():
 	# He will leave the program with this command.
 
 @PollersUsers
-def PollersStatus():
+def PollersChatBox():
 	'''
 		This function allows to
 		see the status of the user.
 	'''
-	pass
+	ModelReqs = requests.get('https://www.root-me.org/'+USER).text
+	ModelServ = BeautifulSoup.BeautifulSoup(ModelReqs, "html5lib")
+
+	for ServiceLetter in re.findall('(<li>ChatBox&nbsp;:&nbsp;[0-9]{0,}<\/li>)', ModelReqs):
+		ServiceLetter = re.findall('[0-9]', ServiceLetter)
+		ServiceLetter = "".join(ServiceLetter)
+
+	sys.exit("[+] ChatBox of the user : %s" %(ServiceLetter))
+	# He will leave the program with this command.
