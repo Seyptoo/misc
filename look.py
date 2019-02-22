@@ -57,7 +57,11 @@ def PollersLangs():
 		RegexOnline = re.findall('(alt="[a-z]{0,2}")', ModelReqs)
 		RegexOnline = "".join(RegexOnline).split('"')[1]
 	except IndexError as e:
-		sys.exit(e)
+		if(not RegexOnline):
+			sys.exit(e)
+
+	sys.exit("[+] Lang of the user : %s" %(RegexOnline))
+	# He will leave the program with this command.
 
 @PollersUsers
 def PollersStatus():
