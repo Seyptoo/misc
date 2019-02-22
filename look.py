@@ -60,6 +60,7 @@ def PollersLangs():
 		if(not RegexOnline):
 			sys.exit(e)
 
+	# He will leave the program with this command.
 	sys.exit("[+] Lang of the user : %s" %(RegexOnline))
 
 @PollersUsers
@@ -75,4 +76,5 @@ def PollersChatBox():
 		ServiceLetter = re.findall('[0-9]', ServiceLetter)
 		ServiceLetter = "".join(ServiceLetter)
 
+	# He will leave the program with this command.
 	sys.exit("[+] ChatBox of the user : %s" %(ServiceLetter))
