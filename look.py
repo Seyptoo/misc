@@ -116,17 +116,18 @@ def PollersAppScript():
 	ModelReqs = requests.get('https://www.root-me.org/%s?inc=score&lang=fr' %(USER)).text
 	RegexApp = re.findall('(\/App-Script\/[A-Z0-9\-[a-z]+"\stitle="[0-9]{0,2}\s[A-Za-z]+">\s[ox])', ModelReqs)
 	# This code will allow you to see the machines hack into the AppScript.
-	for AppScriptWeb in RegexApp:
-		AppScriptWeb = AppScriptWeb.split("/")
-		AppScriptWeb = AppScriptWeb[2].split('"')
+	for ServiceParameter in RegexApp:
+		ServiceOutput = ServiceParameter.split("/")
+		ServiceOutput = ServiceOutput[2].split('"')
 
 		# So we tested successfully and everything works fine.
 		# There is no exception in this function for the moment so everything is fine.
 
-		NameChallenge = AppScriptWeb[0]
-		OwnsChallenge = AppScriptWeb[3]
+		NameChallenge = ServiceOutput[0]
+		OwnsChallenge = ServiceOutput[3]
 
 		if("o" in OwnsChallenge):
 			print("%s : Owned" %(NameChallenge))
-		if("x" in OwnsChallenge):
+		elif("x" in OwnsChallenge):
 			print("%s : Not Owned" %(NameChallenge))
+
