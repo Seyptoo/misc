@@ -115,7 +115,7 @@ def PollersAppScript():
 	'''
 	ModelReqs = requests.get('https://www.root-me.org/%s?inc=score&lang=fr' %(USER)).text
 	RegexApp = re.findall('(\/App-Script\/[A-Z0-9\-[a-z]+"\stitle="[0-9]{0,2}\s[A-Za-z]+">\s[ox])', ModelReqs)
-	# This code will allow you to see the machines hack into the AppScript.
+
 	for ServiceParameter in RegexApp:
 		ServiceOutput = ServiceParameter.split("/")
 		ServiceOutput = ServiceOutput[2].split('"')
