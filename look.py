@@ -21,14 +21,14 @@ LANG = options.PollersLang
 CHAT = options.PollersChat
 STAT = options.PollersStatus
 
-def PollersUsers(ValuePlease):
+def PollersUsers(WrapperService):
 	'''
 		I created a decorator to simplify
 		things and speed things up easily
 	'''
 	if(USER == None):
 		raise RMUsernameNotFound("No users typed.")
-	return ValuePlease
+	return WrapperService
 
 @PollersUsers
 def PollersPoint():
@@ -117,10 +117,10 @@ def PollersAppScript():
 	'''
 	ModelReqs = requests.get('https://www.root-me.org/%s?inc=score&lang=fr' %(USER)).text
 	RegexApp = re.findall('(\/App-Script\/[A-Z0-9\-[a-z]+"\stitle="[0-9]{0,2}\s[A-Za-z]+">\s[ox])', ModelReqs)
-	
-	for ServiceParameter in RegexApp:
-		ServiceParameter = ServiceParameter.split("/")
-		ServiceParameter = ServiceParameter[2].split('"')
+
+	for PrefixPollers in RegexApp:
+		PrefixPollers = PrefixPollers.split("/")
+		PrefixPollers = PrefixPollers[2].split('"')
 
 		# So we tested successfully and everything works fine.
 		# There is no exception in this function for the moment so everything is fine.
@@ -132,7 +132,3 @@ def PollersAppScript():
 			print(color.Y+"[+] %s : Owned" %(NameChallenge))
 		elif("x" in OwnsChallenge):
 			print(color.R+"[-] %s : Not Owned" %(NameChallenge))
-
-	
-
-			
