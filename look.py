@@ -17,7 +17,7 @@ class RMErrorConnections(Exception):
 USER = options.PollersUser
 LANG = options.PollersLang
 CHAT = options.PollersChat
-STATUS = options.PollersStatus
+STAT = options.PollersStatus
 
 def PollersUsers(ValuePlease):
 	'''
@@ -94,7 +94,7 @@ def PollersStatus():
 	ModelReqs = requests.get('https://www.root-me.org/'+USER).text
 	ModelServ = BeautifulSoup.BeautifulSoup(ModelReqs, "html5lib")
 
-	RegexStatus = re.findall('(<li>Statut|Status|estatus|&nbsp;:&nbsp;\w+.{0,}<\/li>)', ModelReqs)
+	RegexStatus = re.findall('(<li>|Statut|Status|estatus|&nbsp;:&nbsp;\w+.{0,}<\/li>)', ModelReqs)
 	if(type(RegexStatus) == list and len(RegexStatus) == 3):
 		RegexStatusService = RegexStatus[1]
 		RegexStatusService = RegexStatusService.replace("&nbsp;:&nbsp;", "")
@@ -103,3 +103,20 @@ def PollersStatus():
 	# He will leave the program with this command.
 	sys.exit("[+] Status of the user : %s" %(RegexStatusService))
 
+'''
+	his part will correspond
+	to the second part.
+'''
+
+@PollersUsers
+def PollersAppScript():
+	'''	This function will allow us to see if the
+			machines are hacked or not in the App-Script.
+	'''
+	ModelReqs = requests.get('https://www.root-me.org/%s?inc=score' %(USER)).text
+	AppScript = re.findall('("fr\/Challenges\/App-Script\/[A-Z0-9\-[a-z]+"\stitle="[0-9]{0,2}\s[A-Za-z]+")', ModelReqs)
+	for ExtensionModel in AppScript:
+		ExtensionModel = ExtensionModel.split("/")
+
+if __name__ == "__main__":
+	PollersAppScript()	
