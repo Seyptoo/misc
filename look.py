@@ -3,7 +3,9 @@
 import requests
 import sys
 import re
+import color
 import options
+import time
 import bs4 as BeautifulSoup
 
 class RMUsernameNotFound(Exception):
@@ -115,19 +117,19 @@ def PollersAppScript():
 	'''
 	ModelReqs = requests.get('https://www.root-me.org/%s?inc=score&lang=fr' %(USER)).text
 	RegexApp = re.findall('(\/App-Script\/[A-Z0-9\-[a-z]+"\stitle="[0-9]{0,2}\s[A-Za-z]+">\s[ox])', ModelReqs)
-
+	# This code will allow you to see the machines hack into the AppScript.
 	for ServiceParameter in RegexApp:
-		ServiceOutput = ServiceParameter.split("/")
-		ServiceOutput = ServiceOutput[2].split('"')
+		ServiceParameter = ServiceParameter.split("/")
+		ServiceParameter = ServiceParameter[2].split('"')
 
 		# So we tested successfully and everything works fine.
 		# There is no exception in this function for the moment so everything is fine.
 
-		NameChallenge = ServiceOutput[0]
-		OwnsChallenge = ServiceOutput[3]
+		NameChallenge = ServiceParameter[0]
+		OwnsChallenge = ServiceParameter[3]
 
 		if("o" in OwnsChallenge):
-			print("%s : Owned" %(NameChallenge))
+			print(color.Y+"[+] %s : Owned" %(NameChallenge))
 		elif("x" in OwnsChallenge):
-			print("%s : Not Owned" %(NameChallenge))
+			print(color.R+"[-] %s : Not Owned" %(NameChallenge))
 
