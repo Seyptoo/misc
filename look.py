@@ -94,14 +94,13 @@ def PollersStatus():
 	ModelReqs = requests.get('https://www.root-me.org/'+USER).text
 	ModelServ = BeautifulSoup.BeautifulSoup(ModelReqs, "html5lib")
 
-	RegexStatus = re.findall('(<li>|Statut|Status|estatus|&nbsp;:&nbsp;\w+.{0,}<\/li>)', ModelReqs)
-	if(type(RegexStatus) == list and len(RegexStatus) == 3):
-		RegexStatusService = RegexStatus[1]
-		RegexStatusService = RegexStatusService.replace("&nbsp;:&nbsp;", "")
-		RegexStatusService = RegexStatusService.replace("</li>", "")
+	RegexStatus = re.findall('(<li>Statut|Status|estatus|&nbsp;:&nbsp;\w+.{0,}<\/li>)', ModelReqs)[1]
+	if(type(RegexStatus) == unicode):
+		RegexStatus = RegexStatus.replace("&nbsp;:&nbsp;", "")
+		StatusRegex = RegexStatus.replace("</li>", "")
 
 	# He will leave the program with this command.
-	sys.exit("[+] Status of the user : %s" %(RegexStatusService))
+	sys.exit("[+] Status of the user : %s" %(StatusRegex))
 
 '''
 	his part will correspond
@@ -110,13 +109,24 @@ def PollersStatus():
 
 @PollersUsers
 def PollersAppScript():
-	'''	This function will allow us to see if the
+	'''
+			This function will allow us to see if the
 			machines are hacked or not in the App-Script.
 	'''
-	ModelReqs = requests.get('https://www.root-me.org/%s?inc=score' %(USER)).text
-	AppScript = re.findall('("fr\/Challenges\/App-Script\/[A-Z0-9\-[a-z]+"\stitle="[0-9]{0,2}\s[A-Za-z]+")', ModelReqs)
-	for ExtensionModel in AppScript:
-		ExtensionModel = ExtensionModel.split("/")
+	ModelReqs = requests.get('https://www.root-me.org/%s?inc=score&lang=fr' %(USER)).text
+	RegexApp = re.findall('(\/App-Script\/[A-Z0-9\-[a-z]+"\stitle="[0-9]{0,2}\s[A-Za-z]+">\s[ox])', ModelReqs)
+	# This code will allow you to see the machines hack into the AppScript.
+	for AppScriptWeb in RegexApp:
+		AppScriptWeb = AppScriptWeb.split("/")
+		AppScriptWeb = AppScriptWeb[2].split('"')
 
-if __name__ == "__main__":
-	PollersAppScript()	
+		# So we tested successfully and everything works fine.
+		# There is no exception in this function for the moment so everything is fine.
+
+		NameChallenge = AppScriptWeb[0]
+		OwnsChallenge = AppScriptWeb[3]
+
+		if("o" in OwnsChallenge):
+			print("%s : Owned" %(NameChallenge))
+		if("x" in OwnsChallenge):
+			print("%s : Not Owned" %(NameChallenge))
