@@ -16,10 +16,15 @@ class RMErrorConnections(Exception):
 	def __init__(self, ServerCondition=None):
 		self.ServerCondition = ServerCondition
 
+class RMSErrorChallenges(Exception):
+	def __init__(self, ChallsCondition=None):
+		self.ChallsCondition = ChallsCondition
+
 USER = options.PollersUser
 LANG = options.PollersLang
 CHAT = options.PollersChat
 STAT = options.PollersStatus
+CHAL = options.PollersChall
 
 def PollersUsers(WrapperService):
 	'''
@@ -109,14 +114,33 @@ def PollersStatus():
 	to the second part.
 '''
 
-@PollersUsers
 def PollersAppScript():
 	'''
 			This function will allow us to see if the
 			machines are hacked or not in the App-Script.
 	'''
 	ModelReqs = requests.get('https://www.root-me.org/%s?inc=score&lang=fr' %(USER)).text
-	RegexApp = re.findall('(\/App-Script\/[A-Z0-9\-[a-z]+"\stitle="[0-9]{0,2}\s[A-Za-z]+">\s[ox])', ModelReqs)
+	ListChallenge = {
+			"App-Script"    :False,
+			"App-Systeme"   :False,
+			"Cracking"      :False,
+			"Cryptanalyse"  :False,
+			"Forensic"      :False,
+			"Programmation" :False,
+			"Realiste"      :False,
+			"Reseau"        :False,
+			"Staganographie":False,
+			"Web-Client"    :False,
+			"Web-Serveur"   :False
+	}
+
+	if(CHAL in ListChallenge):
+		ChallengeService = CHAL
+	else: # If he does not find the options or ....
+		raise RMSErrorChallenges("Options not typed.")
+
+	RegexApp = ('(\/%s\/[A-Z0-9\-[a-z]+"\stitle="[0-9]{0,2}\s[A-Za-z]+">\s[ox])' %(ChallengeService))
+	RegexApp = re.findall(RegexApp, ModelReqs)
 
 	for PrefixPollers in RegexApp:
 		PrefixPollers = PrefixPollers.split("/")
@@ -132,3 +156,6 @@ def PollersAppScript():
 			print(color.Y+"[+] %s : Owned" %(NameChallenge))
 		elif("x" in OwnsChallenge):
 			print(color.R+"[-] %s : Not Owned" %(NameChallenge))
+
+if __name__ == "__main__":
+	PollersAppScript()
