@@ -125,8 +125,8 @@ def PollersAppScript():
 		# So we tested successfully and everything works fine.
 		# There is no exception in this function for the moment so everything is fine.
 
-		NameChallenge = ServiceParameter[0]
-		OwnsChallenge = ServiceParameter[3]
+		NameChallenge = PrefixPollers[0]
+		OwnsChallenge = PrefixPollers[3]
 
 		if("o" in OwnsChallenge):
 			print(color.Y+"[+] %s : Owned" %(NameChallenge))
