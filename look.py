@@ -101,7 +101,7 @@ def PollersStatus():
 	ModelReqs = requests.get('https://www.root-me.org/'+USER).text
 	ModelServ = BeautifulSoup.BeautifulSoup(ModelReqs, "html5lib")
 
-	RegexStatus = re.findall('(<li>Statut|Status|estatus|&nbsp;:&nbsp;\w+.{0,}<\/li>)', ModelReqs)[1]
+	RegexStatus = re.findall('(<li>|Statut|Status|estatus|&nbsp;:&nbsp;\w+.{0,}<\/li>)', ModelReqs)[1]
 	if(type(RegexStatus) == unicode):
 		RegexStatus = RegexStatus.replace("&nbsp;:&nbsp;", "")
 		StatusRegex = RegexStatus.replace("</li>", "")
@@ -115,7 +115,7 @@ def PollersStatus():
 '''
 
 @PollersUsers
-def PollersAppScript():
+def PollersChallenge():
 	'''
 			This function will allow us to see if the
 			machines are hacked or not in the App-Script.
@@ -144,19 +144,16 @@ def PollersAppScript():
 	RegexApp = re.findall(RegexApp, ModelReqs)
 
 	for PrefixPollers in RegexApp:
-		PrefixPollers = PrefixPollers.split("/")
-		PrefixPollers = PrefixPollers[2].split('"')
+		redirect_stdout = PrefixPollers.split("/")
+		redirect_stdout = redirect_stdout[2].split('"')
 
 		# So we tested successfully and everything works fine.
 		# There is no exception in this function for the moment so everything is fine.
 
-		NameChallenge = PrefixPollers[0]
-		OwnsChallenge = PrefixPollers[3]
+		NameChallenge = redirect_stdout[0]
+		OwnsChallenge = redirect_stdout[3]
 
 		if("o".lower() in OwnsChallenge):
 			print(color.Y+"[+] %s : Owned" %(NameChallenge))
 		elif("x".lower() in OwnsChallenge):
 			print(color.R+"[-] %s : Not Owned" %(NameChallenge))
-
-if __name__ == "__main__":
-	PollersAppScript()
