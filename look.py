@@ -153,8 +153,8 @@ def PollersAppScript():
 		NameChallenge = PrefixPollers[0]
 		OwnsChallenge = PrefixPollers[3]
 
-		if("o" in OwnsChallenge):
+		if("o".lower() in OwnsChallenge):
 			print(color.Y+"[+] %s : Owned" %(NameChallenge))
-		elif("x" in OwnsChallenge):
+		elif("x".lower() in OwnsChallenge):
 			print(color.R+"[-] %s : Not Owned" %(NameChallenge))
 
