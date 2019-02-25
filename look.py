@@ -121,21 +121,21 @@ def PollersAppScript():
 			machines are hacked or not in the App-Script.
 	'''
 	ModelReqs = requests.get('https://www.root-me.org/%s?inc=score&lang=en' %(USER)).text
-	ListChallenge = {
+	ChallengeModel = {
 			"App-Script"    :False,
-			"App-System"   :False,
+			"App-Systeme"   :False,
 			"Cracking"      :False,
 			"Cryptanalysis" :False,
 			"Forensic"      :False,
 			"Programming"   :False,
 			"Realist"       :False,
 			"Network"       :False,
-			"Staganography" :False,
+			"Steganography" :False,
 			"Web-Client"    :False,
 			"Web-Server"    :False
 	}
 
-	if(CHAL in ListChallenge):
+	if(CHAL in ChallengeModel.keys()):
 		ChallengeService = CHAL
 	else: # If he does not find the options or ....
 		raise RMSErrorChallenges("Options not typed.")
@@ -158,3 +158,5 @@ def PollersAppScript():
 		elif("x".lower() in OwnsChallenge):
 			print(color.R+"[-] %s : Not Owned" %(NameChallenge))
 
+if __name__ == "__main__":
+	PollersAppScript()
