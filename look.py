@@ -114,24 +114,25 @@ def PollersStatus():
 	to the second part.
 '''
 
+@PollersUsers
 def PollersAppScript():
 	'''
 			This function will allow us to see if the
 			machines are hacked or not in the App-Script.
 	'''
-	ModelReqs = requests.get('https://www.root-me.org/%s?inc=score&lang=fr' %(USER)).text
+	ModelReqs = requests.get('https://www.root-me.org/%s?inc=score&lang=en' %(USER)).text
 	ListChallenge = {
 			"App-Script"    :False,
 			"App-Systeme"   :False,
 			"Cracking"      :False,
-			"Cryptanalyse"  :False,
+			"Cryptanalysis" :False,
 			"Forensic"      :False,
-			"Programmation" :False,
-			"Realiste"      :False,
-			"Reseau"        :False,
-			"Staganographie":False,
+			"Programming"   :False,
+			"Realist"       :False,
+			"Network"       :False,
+			"Staganography" :False,
 			"Web-Client"    :False,
-			"Web-Serveur"   :False
+			"Web-Server"    :False
 	}
 
 	if(CHAL in ListChallenge):
@@ -157,5 +158,3 @@ def PollersAppScript():
 		elif("x" in OwnsChallenge):
 			print(color.R+"[-] %s : Not Owned" %(NameChallenge))
 
-if __name__ == "__main__":
-	PollersAppScript()
