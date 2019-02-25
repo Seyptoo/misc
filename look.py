@@ -123,7 +123,7 @@ def PollersAppScript():
 	ModelReqs = requests.get('https://www.root-me.org/%s?inc=score&lang=en' %(USER)).text
 	ListChallenge = {
 			"App-Script"    :False,
-			"App-Systeme"   :False,
+			"App-System"   :False,
 			"Cracking"      :False,
 			"Cryptanalysis" :False,
 			"Forensic"      :False,
