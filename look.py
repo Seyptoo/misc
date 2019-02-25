@@ -143,8 +143,8 @@ def PollersChallenge():
 	RegexApp = ('(\/%s\/[A-Z0-9\-[a-z]+"\stitle="[0-9]{0,2}\s[A-Za-z]+">\s[ox])' %(ChallengeService))
 	RegexApp = re.findall(RegexApp, ModelReqs)
 
-	for PrefixPollers in RegexApp:
-		redirect_stdout = PrefixPollers.split("/")
+	for redirect_stdout in RegexApp:
+		redirect_stdout = redirect_stdout.split("/")
 		redirect_stdout = redirect_stdout[2].split('"')
 
 		# So we tested successfully and everything works fine.
@@ -153,7 +153,8 @@ def PollersChallenge():
 		NameChallenge = redirect_stdout[0]
 		OwnsChallenge = redirect_stdout[3]
 
-		if("o".lower() in OwnsChallenge):
+		if("o" in OwnsChallenge):
 			print(color.Y+"[+] %s : Owned" %(NameChallenge))
-		elif("x".lower() in OwnsChallenge):
+		elif("x" in OwnsChallenge):
 			print(color.R+"[-] %s : Not Owned" %(NameChallenge))
+			
