@@ -44,7 +44,7 @@ def PollersPoint():
 		This function will consist
 		of seeing the points of the user
 	'''
-	ModelReqs = requests.get('https://www.root-me.org/'+USER).text
+	ModelReqs = requests.get(redirect_url+USER).text
 	ModelSpan = re.findall('(<span>[0-9]+<\/span>)', ModelReqs)
 
 	# He looks for the right value in the source of the page
@@ -63,7 +63,7 @@ def PollersLangs():
 		This function allows you to see
 		the language of the user
 	'''
-	ModelReqs = requests.get('https://www.root-me.org/'+USER).text
+	ModelReqs = requests.get(redirect_url+USER).text
 	ModelServ = BeautifulSoup.BeautifulSoup(ModelReqs, "html5lib")
 
 	# This function allows you to test the language and see the language of the user.
@@ -85,7 +85,7 @@ def PollersChatBox():
 		This function allows to
 		see the chatbox of the user.
 	'''
-	ModelReqs = requests.get('https://www.root-me.org/'+USER).text
+	ModelReqs = requests.get(redirect_url+USER).text
 	ModelServ = BeautifulSoup.BeautifulSoup(ModelReqs, "html5lib")
 
 	for ServiceLetter in re.findall('(<li>ChatBox&nbsp;:&nbsp;[0-9]{0,}<\/li>)', ModelReqs):
@@ -101,7 +101,7 @@ def PollersStatus():
 		This function allows to
 		see the Status of the user.	
 	'''
-	ModelReqs = requests.get('https://www.root-me.org/'+USER).text
+	ModelReqs = requests.get(redirect_url+USER).text
 	ModelServ = BeautifulSoup.BeautifulSoup(ModelReqs, "html5lib")
 
 	RegexStatus = re.findall('(<li>|Statut|Status|estatus|&nbsp;:&nbsp;\w+.{0,}<\/li>)', ModelReqs)[1]
