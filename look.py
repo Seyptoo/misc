@@ -161,4 +161,16 @@ def PollersChallenge():
 			print(color.Y+"[+] %s : Owned" %(NameChallenge))
 		elif("x" in OwnsChallenge):
 			print(color.R+"[-] %s : Not Owned" %(NameChallenge))
-			
+
+@PollersUsers
+def PollersCapture():
+	server = requests.get(redirect_url + USER + "?inc=ctf&lang=en").text
+	m = re.findall("('squelettes\/img\/[a-z_]+.png'.+\/><\/td>\n<td>[\/a-z\s:A-Z0-9]+<\/td>)", server)
+	for b in m:
+		if('pas_valide.png' in b):
+			g = re.findall('(<td>[\/a-z\s:A-Z0-9]+<\/td>)', b)
+			print g[0] + " |||| Not Owned"
+		elif('/valide.png' in b):
+			g = re.findall('(<td>[\/a-z\s:A-Z0-9]+<\/td>)', b)
+			print g[0] + " |||| Owned with success"
+
