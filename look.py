@@ -8,6 +8,9 @@ import options
 import time
 import bs4 as BeautifulSoup
 
+# This is the url of the website.
+redirect_url = "https://www.root-me.org/"
+
 class RMUsernameNotFound(Exception):
 	def __init__(self, OutputCondition=None):
 		self.OutputCondition = OutputCondition
