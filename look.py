@@ -78,7 +78,7 @@ def PollersLangs():
 			sys.exit(e)
 
 	# He will leave the program with this command.
-	sys.exit("[+] Lang of the user : %s" %(RegexOnline))
+	print(color.Y + "[+] Lang of the user : %s" %(RegexOnline))
 
 @PollersUsers
 def PollersChatBox():
@@ -94,7 +94,7 @@ def PollersChatBox():
 		service_chatbox = "".join(service_chatbox)
 
 	# He will leave the program with this command.
-	sys.exit("[+] ChatBox of the user : %s" %(service_chatbox))
+	print(color.Y + "[+] ChatBox of the user : %s" %(service_chatbox))
 
 @PollersUsers
 def PollersStatus():
@@ -111,7 +111,7 @@ def PollersStatus():
 		StatusRegex = RegexStatus.replace("</li>", "")
 
 	# He will leave the program with this command.
-	sys.exit("[+] Status of the user : %s" %(StatusRegex))
+	print(color.Y + "[+] Status of the user : %s" %(StatusRegex))
 
 '''
 	his part will correspond
@@ -162,5 +162,3 @@ def PollersChallenge():
 		elif("x" in OwnsChallenge):
 			print(color.R+"[-] %s : Not Owned" %(NameChallenge))
 			
-if __name__ == "__main__":
-	PollersChallenge()
