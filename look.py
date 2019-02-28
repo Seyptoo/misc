@@ -56,7 +56,7 @@ def PollersPoint():
 	if(type(ModelSpan) == list and len(ModelSpan) != 0):
 		BertModel = ModelSpan[0] # Take the first.
 		BertModel = re.findall("[0-9]", BertModel)
-		sys.exit("Point of "+USER+" : "+"".join(BertModel))
+	print(color.Y + "[+] Point of "+USER+" : "+"".join(BertModel))
 
 @PollersUsers
 def PollersLangs():
@@ -89,12 +89,12 @@ def PollersChatBox():
 	ModelReqs = requests.get(redirect_url + USER).text
 	ModelServ = BeautifulSoup.BeautifulSoup(ModelReqs, "html5lib")
 
-	for ServiceLetter in re.findall('(<li>ChatBox&nbsp;:&nbsp;[0-9]{0,}<\/li>)', ModelReqs):
-		ServiceLetter = re.findall('[0-9]', ServiceLetter)
-		ServiceLetter = "".join(ServiceLetter)
+	for service_chatbox in re.findall('(<li>ChatBox&nbsp;:&nbsp;[0-9]{0,}<\/li>)', ModelReqs):
+		service_chatbox = re.findall('[0-9]', service_chatbox)
+		service_chatbox = "".join(service_chatbox)
 
 	# He will leave the program with this command.
-	sys.exit("[+] ChatBox of the user : %s" %(ServiceLetter))
+	sys.exit("[+] ChatBox of the user : %s" %(service_chatbox))
 
 @PollersUsers
 def PollersStatus():
@@ -127,7 +127,7 @@ def PollersChallenge():
 	ModelReqs = requests.get(redirect_url + '%s?inc=score&lang=en' %(USER)).text
 	ChallengeModel = {
 			"App-Script"    :False,
-			"App-System"   :False,
+			"App-System"    :False,
 			"Cracking"      :False,
 			"Cryptanalysis" :False,
 			"Forensic"      :False,
