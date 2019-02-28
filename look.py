@@ -3,10 +3,10 @@
 import requests
 import sys
 import re
-import color
 import options
 import time
 import bs4 as BeautifulSoup
+from core import color
 
 # This is the url of the website.
 redirect_url = "https://www.root-me.org/"
@@ -36,6 +36,9 @@ def PollersUsers(WrapperService):
 	'''
 	if(USER == None):
 		raise RMUsernameNotFound("No users typed.")
+	elif(USER != None):
+		if(requests.get(redirect_url + USER).status_code == 404):
+			raise RMUsernameNotFound("No user found in database.")
 	return WrapperService
 
 @PollersUsers
@@ -54,8 +57,6 @@ def PollersPoint():
 		BertModel = ModelSpan[0] # Take the first.
 		BertModel = re.findall("[0-9]", BertModel)
 		sys.exit("Point of "+USER+" : "+"".join(BertModel))
-	else:
-		raise RMUsernameNotFound("Username not found in DB.")
 
 @PollersUsers
 def PollersLangs():
@@ -63,7 +64,7 @@ def PollersLangs():
 		This function allows you to see
 		the language of the user
 	'''
-	ModelReqs = requests.get(redirect_url+USER).text
+	ModelReqs = requests.get(redirect_url + USER).text
 	ModelServ = BeautifulSoup.BeautifulSoup(ModelReqs, "html5lib")
 
 	# This function allows you to test the language and see the language of the user.
@@ -85,7 +86,7 @@ def PollersChatBox():
 		This function allows to
 		see the chatbox of the user.
 	'''
-	ModelReqs = requests.get(redirect_url+USER).text
+	ModelReqs = requests.get(redirect_url + USER).text
 	ModelServ = BeautifulSoup.BeautifulSoup(ModelReqs, "html5lib")
 
 	for ServiceLetter in re.findall('(<li>ChatBox&nbsp;:&nbsp;[0-9]{0,}<\/li>)', ModelReqs):
@@ -104,7 +105,7 @@ def PollersStatus():
 	ModelReqs = requests.get(redirect_url+USER).text
 	ModelServ = BeautifulSoup.BeautifulSoup(ModelReqs, "html5lib")
 
-	RegexStatus = re.findall('(<li>|Statut|Status|estatus|&nbsp;:&nbsp;\w+.{0,}<\/li>)', ModelReqs)[1]
+	RegexStatus = re.findall('(<li>Statut|Status|estatus|&nbsp;:&nbsp;\w+.{0,}<\/li>)', ModelReqs)[1]
 	if(type(RegexStatus) == unicode):
 		RegexStatus = RegexStatus.replace("&nbsp;:&nbsp;", "")
 		StatusRegex = RegexStatus.replace("</li>", "")
@@ -123,10 +124,10 @@ def PollersChallenge():
 			This function will allow us to see if the
 			machines are hacked or not in the App-Script.
 	'''
-	ModelReqs = requests.get('https://www.root-me.org/%s?inc=score&lang=en' %(USER)).text
+	ModelReqs = requests.get(redirect_url + '%s?inc=score&lang=en' %(USER)).text
 	ChallengeModel = {
 			"App-Script"    :False,
-			"App-Systeme"   :False,
+			"App-System"   :False,
 			"Cracking"      :False,
 			"Cryptanalysis" :False,
 			"Forensic"      :False,
@@ -161,3 +162,5 @@ def PollersChallenge():
 		elif("x" in OwnsChallenge):
 			print(color.R+"[-] %s : Not Owned" %(NameChallenge))
 			
+if __name__ == "__main__":
+	PollersChallenge()
