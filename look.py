@@ -175,11 +175,12 @@ def PollersCapture():
 	# This part will recover the machines hack on the server.
 	# A function that aims to see the machines.
 
-	for search_machines in RegexApp:
-		machines_names = re.findall('(<td>[\/a-z\s:A-Z0-9]+<\/td>)', search_machines)[0]
-		if('pas_valide.png' in search_machines):
-			OutputVariable = (color.R + machines_names + " Not Owned")
-		elif('/valide.png' in search_machines):
-			OutputVariable = (color.Y + machines_names + " Owned")
+	for redirect_searchs in RegexApp:
+		redirect_machines = re.findall('(<td>[\/a-z\s:A-Z0-9]+<\/td>)', redirect_searchs)[0]
+		# I create a condition to test the variables and see the machines hack.
 
-		print OutputVariable
+		if('pas_valide.png' in redirect_searchs):
+			redirect_output = (color.R + redirect_machines + " Not Owned")
+		elif('/valide.png' in redirect_searchs):
+			redirect_output = (color.Y + redirect_machines + " Owned")
+
