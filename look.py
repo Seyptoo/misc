@@ -164,13 +164,22 @@ def PollersChallenge():
 
 @PollersUsers
 def PollersCapture():
-	server = requests.get(redirect_url + USER + "?inc=ctf&lang=en").text
-	m = re.findall("('squelettes\/img\/[a-z_]+.png'.+\/><\/td>\n<td>[\/a-z\s:A-Z0-9]+<\/td>)", server)
-	for b in m:
-		if('pas_valide.png' in b):
-			g = re.findall('(<td>[\/a-z\s:A-Z0-9]+<\/td>)', b)
-			print g[0] + " |||| Not Owned"
-		elif('/valide.png' in b):
-			g = re.findall('(<td>[\/a-z\s:A-Z0-9]+<\/td>)', b)
-			print g[0] + " |||| Owned with success"
+	'''
+		This function will see if the
+		ctf boxs have been hacked
+	'''
+	ModelReqs = requests.get(redirect_url + USER + "?inc=ctf&lang=fr").text
+	RegexApp = "('squelettes\/img\/[a-z_]+.png'.+\/><\/td>\n<td>[\/a-z\s:A-Z0-9]+<\/td>)"
+	RegexApp = re.findall(RegexApp, ModelReqs)
 
+	# This part will recover the machines hack on the server.
+	# A function that aims to see the machines.
+
+	for search_machines in RegexApp:
+		machines_names = re.findall('(<td>[\/a-z\s:A-Z0-9]+<\/td>)', search_machines)[0]
+		if('pas_valide.png' in search_machines):
+			OutputVariable = (color.R + machines_names + " Not Owned")
+		elif('/valide.png' in search_machines):
+			OutputVariable = (color.Y + machines_names + " Owned")
+
+		print OutputVariable
