@@ -36,9 +36,8 @@ class dns_requests:
 		RegexValueReqs = InvokesSearchs.index('/InvokeRequests')
 		CountInvokeReq = len(InvokesSearchs)
 
-		if isinstance(RegexValueReqs, int) == True and isinstance(CountInvokeReq, int) == True:
-			del InvokesSearchs[RegexValueReqs:CountInvokeReq]
-			print " ".join(InvokesSearchs)
+		del InvokesSearchs[RegexValueReqs:CountInvokeReq]
+		print " ".join(InvokesSearchs)
 
 	def __str__(self):
 		'''
