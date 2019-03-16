@@ -39,11 +39,15 @@ class dns_requests(threading.Thread):
 		InvokesSearchs = InvokeRequests.find_all('pre')[0]
 		InvokesSearchs = "".join(InvokesSearchs).split()[::-1]	
 
+		# So I create a loop to have information about the command.
+		# Additional information on the execution of the code.
+
 		RegexValueReqs = InvokesSearchs.index('/InvokeRequests')
 		CountInvokeReq = len(InvokesSearchs)
 
-		del InvokesSearchs[RegexValueReqs:CountInvokeReq]
-		print " ".join(InvokesSearchs)
+		if isinstance(RegexValueReqs, int) and isinstance(CountInvokeReq, int):
+			del InvokesSearchs[RegexValueReqs:CountInvokeReq]
+			print " ".join(InvokesSearchs)
 
 	def __str__(self):
 		'''
@@ -55,9 +59,6 @@ class dns_requests(threading.Thread):
 			if ExecutionCommand == ""     : continue 
 			if ExecutionCommand == "quit" : sys.exit(0)
 			if ExecutionCommand != ""     : self.values_in_col(ExecutionCommand)
-
-			# So I create a loop to have information about the command.
-			# Additional information on the execution of the code.	
 
 if __name__ == "__main__":
 	req = dns_requests()
