@@ -36,11 +36,11 @@ class dns_requests(threading.Thread):
 		except requests.exceptions.ConnectTimeout as ExportVariable:
 			sys.exit(ExportVariable)
 
-		InvokesSearchs = InvokeRequests.find_all('pre')[0]
-		InvokesSearchs = "".join(InvokesSearchs).split()[::-1]	
-
 		# So I create a loop to have information about the command.
 		# Additional information on the execution of the code.
+	
+		InvokesSearchs = InvokeRequests.find_all('pre')[0]
+		InvokesSearchs = "".join(InvokesSearchs).split()[::-1]	
 
 		RegexValueReqs = InvokesSearchs.index('/InvokeRequests')
 		CountInvokeReq = len(InvokesSearchs)
