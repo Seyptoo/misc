@@ -45,6 +45,9 @@ class dns_requests(threading.Thread):
 		RegexValueReqs = InvokesSearchs.index('/InvokeRequests')
 		CountInvokeReq = len(InvokesSearchs)
 
+		# I created a condition for reasons, to test the variables
+		# and their type of variable, and then execute the commands below
+		
 		if isinstance(RegexValueReqs, int) and isinstance(CountInvokeReq, int):
 			del InvokesSearchs[RegexValueReqs:CountInvokeReq]
 			print " ".join(InvokesSearchs)
