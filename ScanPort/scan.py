@@ -19,14 +19,18 @@ def InvokeRequests(return_value):
 	return return_value
 
 @InvokeRequests
+def InvokeLoopMods(socket_send, number_port):
+	try:
+		socket_send.connect((InvokeAddressIP, number_port))
+		print("[*] Port found : %s:%s" %(InvokeAddressIP, number_port))
+	except socket.error as error_connection_socket:
+		pass # // This part performs nothing at all
+
+@InvokeRequests
 def InvokePortMods():
 	socket_send = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	for number_port in range(0, 65535):
-		try:
-			socket_send.connect((InvokeAddressIP, number_port))
-			print("[*] Port found : %s:%s" %(InvokeAddressIP, number_port))
-		except socket.error as error_connection_socket:
-			pass
+		if(InvokeLoopMods(socket_send, number_port) == None): pass
 
 if __name__ == "__main__":
 	InvokePortMods()
