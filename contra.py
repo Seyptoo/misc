@@ -8,8 +8,7 @@ import readline
 
 class ExecutionCommand:
     def __init__(self, url_target="http://10.1.1.38/blog/wp-login.php", 
-                    send_users_texts=None):
-
+				send_users_texts=None):
         '''
             So concretely this
             function corresponds precisely to the options and
